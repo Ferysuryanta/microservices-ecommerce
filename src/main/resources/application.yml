@@ -36,6 +36,8 @@ security:
   lifecycle:
     timeout-per-shutdown-phase: 20s
 
+  refresh-token-ttl: 2592000
+
 management:
   endpoints:
     web:

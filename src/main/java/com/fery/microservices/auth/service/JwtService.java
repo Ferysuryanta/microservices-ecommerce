@@ -49,7 +49,7 @@ public class JwtService {
                 .getTokenValue();
     }
 
-    public long getAccessTokenExpiresInSeconds() {
+    public long getAccessTokenExpirySeconds() {
         return accessTokenTtl.getSeconds();
     }
 }
