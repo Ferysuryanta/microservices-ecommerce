@@ -1,0 +1,5 @@
+security:
+  jwt:
+    secret: MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=
+    issuer: auth-service
+    access-token-ttl: 15m
