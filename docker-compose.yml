@@ -6,7 +6,7 @@ services:
     environment:
         POSTGRES_DB: auth_db
         POSTGRES_USER: auth_user
-        POSTGRES_PASSWORD: ${DB_PASSWORD:-local_dev_password}
+        POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set}
     ports:
       - "5433:5432"
     volumes:
@@ -30,8 +30,8 @@ services:
         SERVER_PORT: 8081
         DB_URL: jdbc:postgresql://auth-db:5432/auth_db
         DB_USERNAME: auth_user
-        DB_PASSWORD: ${DB_PASSWORD:-local_dev_password}
-        JWT_SECRET: ${JWT_SECRET:-local_dev_jwt_secret}
+        DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set}
+        JWT_SECRET: ${JWT_SECRET:?JWT_SECRET must be set}
     ports:
       - "8081:8081"
 

@@ -26,14 +26,14 @@ spring:
       hibernate:
         format_sql: true
 
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+
 security:
   jwt:
     secret: ${JWT_SECRET}
     issuer: auth-service
     access-token-ttl: 15m
-
-  lifecycle:
-    timeout-per-shutdown-phase: 20s
 
   refresh-token-ttl: 2592000
 
@@ -54,4 +54,5 @@ info:
 
 logging:
   level:
-    org.springframework.security: TRACE
+    org.springframework.security: INFO
+    root: INFO

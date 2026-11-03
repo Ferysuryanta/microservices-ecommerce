@@ -3,10 +3,7 @@ package com.fery.microservices.auth.repository;
 import com.fery.microservices.auth.entity.RefreshToken;
 import com.fery.microservices.auth.entity.User;
 import jakarta.persistence.LockModeType;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Lock;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 
 import java.time.OffsetDateTime;
@@ -53,6 +50,7 @@ public interface RefreshTokenRepository extends JpaRepository<RefreshToken, UUID
             @Param("now") OffsetDateTime now
     );
 
+    @EntityGraph(attributePaths = {"user"})
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("""
         SELECT rt
