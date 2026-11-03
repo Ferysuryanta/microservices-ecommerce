@@ -31,9 +31,11 @@ spring:
 
 security:
   jwt:
-    secret: ${JWT_SECRET}
     issuer: auth-service
     access-token-ttl: 15m
+    key-id: auth-key-2026-01
+    private-key-location: file:./secrets/jwt-private.pem
+    public-key-location: file:./secrets/jwt-public.pem
 
   refresh-token-ttl: 2592000
 
