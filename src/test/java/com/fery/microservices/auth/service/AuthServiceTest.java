@@ -37,6 +37,9 @@ class AuthServiceTest {
     @Mock
     private JwtService jwtService;
 
+    @Mock
+    private RefreshTokenManager refreshTokenManager;
+
     @InjectMocks
     private AuthService authService;
 
@@ -154,14 +157,18 @@ class AuthServiceTest {
         when(jwtService.generateAccessToken(user))
                 .thenReturn("test-jwt-token");
 
-        when(jwtService.getAccessTokenExpiresInSeconds())
+        when(jwtService.getAccessTokenExpirySeconds())
                 .thenReturn(900L);
+
+        when(refreshTokenManager.createRefreshToken(user))
+                .thenReturn("test-refresh-token");
 
         var response = authService.login(request);
 
         assertNotNull(response);
 
         verify(jwtService).generateAccessToken(user);
+        verify(refreshTokenManager).createRefreshToken(user);
     }
 
     @Test

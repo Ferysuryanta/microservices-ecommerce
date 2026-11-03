@@ -54,4 +54,19 @@ public class RefreshTokenController {
                 .build();
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/logout")
+    @Operation(
+            summary = "Logout user"
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "User logged out successfully"),
+            @ApiResponse(responseCode = "401", description = "Invalid or expired refresh token"),
+            @ApiResponse(responseCode = "400", description = "Invalid request data")
+    })
+    public ResponseEntity<Void> logout(
+            @Valid @RequestBody RefreshTokenRequest request) {
+        refreshTokenManager.revokeRefreshToken(request.getRefreshToken());
+        return ResponseEntity.ok().build();
+    }
 }
